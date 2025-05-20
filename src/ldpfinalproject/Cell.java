@@ -22,6 +22,7 @@ public class Cell implements Serializable {
     private PlayerColor color;    // null se tipo NORMAL
     private Piece occupant;       // peça que estiver aqui, ou null
 
+ 
     public Cell(int index, CellType type, PlayerColor color) {
         this.index = index;
         this.type = type;

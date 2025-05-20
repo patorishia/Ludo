@@ -4,11 +4,10 @@
  */
 package ldpfinalproject;
 
+import java.util.Arrays;
+import java.util.List;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -19,27 +18,28 @@ public class LDPFinalProject extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction((ActionEvent event) -> {
-            System.out.println("Hello World!");
-        });
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
+        // Criar jogadores
+        Player player1 = new Player("Jogador 1");
+        Player player2 = new Player("Jogador 2");
+
+        // Inicializar jogo com 2 jogadores (podes adaptar para 3 ou 4)
+        List<Player> players = Arrays.asList(player1, player2);
+        Game game = new Game(players);
+
+        // Criar controlador principal
+        GameController controller = new GameController(game);
+
+        // Criar interface gráfica principal (GameView ou BoardPane)
+        GameView gameView = new GameView(controller);
+
+        // Criar e configurar a cena
+        Scene scene = new Scene(gameView, 800, 800); // ajusta o tamanho conforme o layout
+        primaryStage.setTitle("Jogo Ludo");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        launch(args);
+        launch(args);  // inicia a aplicação JavaFX
     }
-    
 }
